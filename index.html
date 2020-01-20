@@ -1,0 +1,35 @@
+<!DOCTYPE html><html lang=en><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1"><link rel=icon href=favicon.ico><link rel=stylesheet href=http://dreamsky.github.io/main/blog/common/init.css><title>summary</title><link href=static/css/chunk-063b0634.e643bd6c.css rel=prefetch><link href=static/js/chunk-063b0634.ea77e71d.js rel=prefetch><link href=static/css/app.4233c9e8.css rel=preload as=style><link href=static/css/chunk-vendors.60f2038a.css rel=preload as=style><link href=static/js/app.b3fc0ce7.js rel=preload as=script><link href=static/js/chunk-vendors.faa6ecd3.js rel=preload as=script><link href=static/css/chunk-vendors.60f2038a.css rel=stylesheet><link href=static/css/app.4233c9e8.css rel=stylesheet></head><style type=text/css>body {
+      margin: 0px;
+      overflow: hidden;
+      /* font-family:Monospace; */
+    }
+    a {
+      color:#0078ff;
+    }
+    p {
+      font-size:16px;
+    }</style><body><noscript><strong>We're sorry but summary doesn't work properly without JavaScript enabled. Please enable it to continue.</strong></noscript><script src=assets/three.min.js></script><script src=assets/Detector.js></script><script id=vs type=x-shader/x-vertex>varying vec2 vUv;
+
+			void main() {
+
+				vUv = uv;
+				gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );
+
+			}</script><script id=fs type=x-shader/x-fragment>uniform sampler2D map;
+
+			uniform vec3 fogColor;
+			uniform float fogNear;
+			uniform float fogFar;
+
+			varying vec2 vUv;
+
+			void main() {
+
+				float depth = gl_FragCoord.z / gl_FragCoord.w;
+				float fogFactor = smoothstep( fogNear, fogFar, depth );
+
+				gl_FragColor = texture2D( map, vUv );
+				gl_FragColor.w *= pow( gl_FragCoord.z, 20.0 );
+				gl_FragColor = mix( gl_FragColor, vec4( fogColor, gl_FragColor.w ), fogFactor );
+
+			}</script><script></script><div id=app></div><script src=static/js/chunk-vendors.faa6ecd3.js></script><script src=static/js/app.b3fc0ce7.js></script></body></html>
